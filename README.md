@@ -1,3 +1,9 @@
+
+# Visual Changes
+<img width="1918" height="918" alt="Image" src="https://github.com/user-attachments/assets/3a848a92-9c3d-4c10-b2e6-e7048f618148" />
+<img width="959" height="458" alt="Image" src="https://github.com/user-attachments/assets/a91ff9dd-a527-4a74-a93f-14155bb66ca8" />
+<img width="959" height="460" alt="Image" src="https://github.com/user-attachments/assets/64a9452a-428f-4d78-a310-617f6b2afc38" />
+
 # Garage Boilerplate
 
 > Streamlined Next.js + Firebase monorepo for student capstone projects — batteries included, beginner friendly, free-tier only.
