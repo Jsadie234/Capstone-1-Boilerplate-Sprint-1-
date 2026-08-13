@@ -13,6 +13,26 @@
 
 See [docs/FRONTEND.md](docs/FRONTEND.md) for route groups and the auth flow.
 
+## Deployment (Sprint 1)
+
+The restyle + team page + login redirect was merged to `main` (`694e486`). That is what triggers the boilerplate pipeline:
+
+| Path | Status |
+|------|--------|
+| Push to `main` | Done |
+| GitHub Actions `deploy.yml` (Firestore rules) | Failed — see [run #31672694035](https://github.com/Jsadie234/Capstone-1-Boilerplate-Sprint-1-/actions/runs/31672694035). Open the **Deploy Firestore Rules** job log (usually missing/invalid `FIREBASE_PROJECT_ID` or `FIREBASE_SERVICE_ACCOUNT_KEY_BASE64` secrets). |
+| GitHub Actions CI | Lint, typecheck, and tests passed. **Security Scan** failed on `pnpm audit` (existing dependency finding, not this feature). |
+| Vercel frontend (production URL) | **Not live yet.** This repo has no Vercel GitHub deployment. The frontend does not ship via `deploy.yml` — connect the repo in Vercel as below. |
+
+**Finish the live URL (required for Dev 2 handoff):**
+
+1. [vercel.com](https://vercel.com) → Add New Project → import `Jsadie234/Capstone-1-Boilerplate-Sprint-1-`
+2. **Root Directory:** `frontend`
+3. Add the env vars from [docs/CI-CD.md § Vercel Setup](docs/CI-CD.md#vercel-setup-frontend)
+4. Deploy. Copy the `*.vercel.app` URL into `NEXT_PUBLIC_APP_URL` and redeploy
+5. Firebase Console → Authentication → Settings → **Authorized domains** → add that Vercel hostname
+6. Spot-check: `/` → login → Google/email sign-in → `/team`; open `/team` in a private window (should bounce to login)
+
 # Garage Boilerplate
 
 > Streamlined Next.js + Firebase monorepo for student capstone projects — batteries included, beginner friendly, free-tier only.
