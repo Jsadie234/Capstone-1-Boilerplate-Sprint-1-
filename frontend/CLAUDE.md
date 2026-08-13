@@ -44,7 +44,6 @@ Key Next.js 16 changes from training data:
 src/
 ├── app/
 │   ├── (auth)/           # Login, register — no auth required
-│   ├── (team)/           # Meet Our Team — getServerSession() in layout
 │   ├── (dashboard)/      # Protected pages — requireAuth() in layout
 │   ├── api/auth/session/ # Session cookie route handler
 │   ├── layout.tsx        # Root layout — Server Component

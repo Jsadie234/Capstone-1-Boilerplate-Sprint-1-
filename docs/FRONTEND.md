@@ -16,10 +16,9 @@ Next.js 16 App Router with React 19, TypeScript (strict), and Tailwind CSS v4.
 
 | Group | Path | Purpose |
 |-------|------|---------|
-| `(auth)` | `/auth/signin`, `/auth/signup` | Split-card login/signup (visual restyle; boilerplate auth) |
-| `(dashboard)` | `/dashboard`, `/profile`, `/settings`, `/notes` | Full app shell with sidebar + navbar |
-| `(team)` | `/team` | Meet Our Team page — requires a valid session |
-| _(root)_ | `/` | Redirects to `/auth/signin` |
+| `(auth)` | `/auth/signin`, `/auth/signup` | Minimal centered layout, no sidebar |
+| `(dashboard)` | `/dashboard`, `/profile`, `/settings` | Full app shell with sidebar + navbar |
+| _(root)_ | `/` | Landing/marketing page |
 
 ### Feature Modules
 
@@ -63,12 +62,10 @@ import { cn } from '@/lib/utils'
 ## Authentication UI Flow
 
 ```
-/ (redirects to signin) → /auth/signin → /team
-                               ↓
-                          /auth/signup → /team
+/ (landing) → /auth/signin → /dashboard
+                  ↓
+             /auth/signup → /dashboard
 ```
-
-`/team` is session-gated: `frontend/src/proxy.ts` redirects unauthenticated requests to `/auth/signin`, and `(team)/layout.tsx` verifies the session with `getServerSession()`.
 
 - `AuthProvider` listens to `onAuthStateChanged` — wraps the root layout
 - `useAuth()` hook accesses auth state in any Client Component
