@@ -43,7 +43,7 @@ export function TeamHeader() {
             aria-label="Open profile menu"
             aria-expanded={open}
           >
-            <UserAvatarIcon className="h-9 w-9 sm:h-10 sm:w-10" />
+            <UserAvatarIcon tone="navy" className="h-9 w-9 sm:h-10 sm:w-10" />
           </button>
 
           {open && (

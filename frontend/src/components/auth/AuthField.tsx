@@ -10,7 +10,7 @@ export function AuthField({ icon, error, className, id, ...props }: AuthFieldPro
   return (
     <div className="space-y-1">
       <div className="relative">
-        <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[#1e3a8a]">
+        <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-zinc-600">
           {icon}
         </span>
         <input
@@ -18,7 +18,7 @@ export function AuthField({ icon, error, className, id, ...props }: AuthFieldPro
           aria-invalid={!!error}
           aria-describedby={error && id ? `${id}-error` : undefined}
           className={cn(
-            'w-full rounded-full border-0 bg-[#c5cae9] py-3 pr-4 pl-11 text-sm text-[#1e3a8a] shadow-sm placeholder:text-[#1e3a8a]/70 focus:ring-2 focus:ring-[#3949ab] focus:outline-none',
+            'w-full rounded-full border-0 bg-[#c5cae9] py-3 pr-4 pl-11 text-sm text-zinc-600 shadow-sm placeholder:text-zinc-500 focus:ring-2 focus:ring-[#3949ab] focus:outline-none',
             error && 'ring-2 ring-red-400',
             className,
           )}

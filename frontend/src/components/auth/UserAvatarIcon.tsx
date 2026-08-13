@@ -1,4 +1,12 @@
-export function UserAvatarIcon({ className }: { className?: string }) {
+type UserAvatarIconProps = {
+  className?: string
+  /** Header profile uses navy; anonymous placeholders use grey. */
+  tone?: 'grey' | 'navy'
+}
+
+export function UserAvatarIcon({ className, tone = 'grey' }: UserAvatarIconProps) {
+  const color = tone === 'navy' ? '#1e3a8a' : '#3f3f46'
+
   return (
     <svg
       viewBox="0 0 64 64"
@@ -7,13 +15,11 @@ export function UserAvatarIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <circle cx="32" cy="32" r="32" fill="#1e3a8a" />
-      <circle cx="32" cy="24" r="10" fill="white" />
+      <circle cx="32" cy="32" r="29" stroke={color} strokeWidth="3" />
+      <circle cx="32" cy="21" r="11" fill={color} />
       <path
-        d="M12 54c4-12 12-18 20-18s16 6 20 18"
-        stroke="white"
-        strokeWidth="4"
-        strokeLinecap="round"
+        d="M19 42Q32 36 45 42c4 5 6 8 6.4 9.5A27.5 27.5 0 0 1 12.6 51.5C13 50 15 47 19 42Z"
+        fill={color}
       />
     </svg>
   )
