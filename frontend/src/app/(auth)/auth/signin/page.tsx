@@ -5,10 +5,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { KeyRound, UserRound } from 'lucide-react'
 import { toast } from 'sonner'
+import { AuthField } from '@/components/auth/AuthField'
+import { UserAvatarIcon } from '@/components/auth/UserAvatarIcon'
+import { FullPageSpinner } from '@/components/shared/LoadingSpinner'
 import { useAuth } from '@/hooks/useAuth'
 import { loginSchema, type LoginInput } from '@/lib/validations/auth'
-import { FullPageSpinner } from '@/components/shared/LoadingSpinner'
 
 export default function SignInPage() {
   const router = useRouter()
@@ -62,16 +65,15 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-1 text-center">
-        <h1 className="text-2xl font-bold tracking-tight">Sign in</h1>
-        <p className="text-sm text-zinc-500">Enter your credentials to continue</p>
-      </div>
+    <div className="mx-auto flex w-full max-w-sm flex-col items-center space-y-6">
+      <UserAvatarIcon className="h-16 w-16" />
+
+      <h1 className="text-2xl font-bold tracking-wide text-[#1e3a8a]">LOGIN</h1>
 
       <button
         type="button"
         onClick={handleGoogleSignIn}
-        className="flex w-full items-center justify-center gap-3 rounded-md border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium shadow-sm transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+        className="flex w-full items-center justify-center gap-3 rounded-full border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-[#1e3a8a] shadow-sm transition-colors hover:bg-zinc-50"
       >
         <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
           <path
@@ -94,75 +96,48 @@ export default function SignInPage() {
         Continue with Google
       </button>
 
-      <div className="relative">
+      <div className="relative w-full">
         <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t border-zinc-200 dark:border-zinc-700" />
+          <span className="w-full border-t border-zinc-200" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-zinc-50 px-2 text-zinc-400 dark:bg-zinc-950">or</span>
+          <span className="bg-white px-2 text-zinc-400">or</span>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="space-y-1.5">
-          <label htmlFor="email" className="text-sm font-medium">
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            autoComplete="email"
-            aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? 'email-error' : undefined}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900"
-            placeholder="you@example.com"
-            {...register('email')}
-          />
-          {errors.email && (
-            <p id="email-error" className="text-xs text-red-500" role="alert">
-              {errors.email.message}
-            </p>
-          )}
-        </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full space-y-4">
+        <AuthField
+          id="email"
+          type="email"
+          autoComplete="email"
+          placeholder="username"
+          icon={<UserRound className="h-4 w-4" strokeWidth={2.5} />}
+          error={errors.email?.message}
+          {...register('email')}
+        />
 
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label htmlFor="password" className="text-sm font-medium">
-              Password
-            </label>
-          </div>
-          <input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            aria-invalid={!!errors.password}
-            aria-describedby={errors.password ? 'password-error' : undefined}
-            className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900"
-            placeholder="••••••••"
-            {...register('password')}
-          />
-          {errors.password && (
-            <p id="password-error" className="text-xs text-red-500" role="alert">
-              {errors.password.message}
-            </p>
-          )}
-        </div>
+        <AuthField
+          id="password"
+          type="password"
+          autoComplete="current-password"
+          placeholder="password"
+          icon={<KeyRound className="h-4 w-4" strokeWidth={2.5} />}
+          error={errors.password?.message}
+          {...register('password')}
+        />
 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-md bg-black px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+          className="mt-2 w-full rounded-lg border-2 border-black bg-white px-4 py-2.5 text-sm font-bold tracking-wide text-black transition-colors hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {isSubmitting ? 'Signing in…' : 'Sign in'}
+          {isSubmitting ? 'Signing in…' : 'LOGIN'}
         </button>
       </form>
 
-      <p className="text-center text-sm text-zinc-500">
+      <p className="text-center text-sm text-[#1e3a8a]/80">
         Don&apos;t have an account?{' '}
-        <Link
-          href="/auth/signup"
-          className="font-medium text-zinc-900 hover:underline dark:text-white"
-        >
+        <Link href="/auth/signup" className="font-semibold text-[#1e3a8a] hover:underline">
           Create one
         </Link>
       </p>
