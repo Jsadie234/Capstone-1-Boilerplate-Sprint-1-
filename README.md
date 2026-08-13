@@ -4,6 +4,15 @@
 
 <img width="959" height="456" alt="Image" src="https://github.com/user-attachments/assets/ff76ebf5-dba1-480d-8089-6fa0adc550e1" />
 
+## Sprint 1 — login and team page
+
+- **Login UI** is restyled to the approved mock. Validation, error toasts, and Firebase auth (email/password + Google) are unchanged from the boilerplate. Google sign-in is expected for accounts that were created with Google.
+- After a successful login, users are sent to **`/team`** (Meet Our Team).
+- **`/team` requires a session.** Visiting it while logged out redirects to `/auth/signin`. The layout also checks `getServerSession()`.
+- Team cards use name, role, photo (or the default avatar if none), blurb with Read more, email, and LinkedIn. Photos live in `frontend/public/images/team/`; copy lives in `frontend/src/features/team/data.ts`. Tom has no profile photo, so the placeholder icon is shown.
+
+See [docs/FRONTEND.md](docs/FRONTEND.md) for route groups and the auth flow.
+
 # Garage Boilerplate
 
 > Streamlined Next.js + Firebase monorepo for student capstone projects — batteries included, beginner friendly, free-tier only.
