@@ -19,6 +19,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Tom Nunan',
     role: 'Business Analyst',
+    photo: '/images/team/tom.png',
     email: 'tsnunan@gmail.com',
     linkedin: 'https://www.linkedin.com/in/tom-n-b44057154',
     bio: "Final-year Bachelor of Information Technology student at RMIT, with interests in data analytics, AI and automation. I'm particularly interested in applying technology to industrial systems, energy and emerging infrastructure, and I'm looking forward to contributing to the ElectraWireless project.",
